@@ -1,40 +1,75 @@
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --background-color: #ecf0f1;
-  --text-color: #333;
-  --card-background: #ffffff;
+  --primary-color: #1a73e8;
+  --secondary-color: #34a853;
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --card-background: #1E1E1E;
+  --shadow-subtle: 0 4px 6px rgba(0,0,0,0.3);
+  --shadow-medium: 0 10px 20px rgba(0,0,0,0.4);
+  --border-radius: 16px;
+  --transition-speed: 0.3s;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: var(--background-color);
+  background: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
 }
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: transparent;
+  width: 95%;
+  margin: 2rem auto;
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-medium);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: rotateX(2deg) rotateY(-2deg) scale(0.98);
+  transition: all var(--transition-speed) ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.container:hover {
+  transform: rotateX(0) rotateY(0) scale(1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  background: linear-gradient(45deg, var(--primary-color), #6a11cb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .mountain-container {
   position: relative;
   width: 100%;
-  height: 500px;
-  background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+  height: 400px;
+  background: linear-gradient(to bottom, #1a1a2e, #16213e);
   overflow: hidden;
-  border-radius: 15px;
-  margin-bottom: 30px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-subtle);
+  perspective: 500px;
 }
 
 .mountain {
@@ -43,161 +78,303 @@ body {
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.05) 50%),
-    linear-gradient(45deg, transparent 50%, #8B4513 50%);
+    linear-gradient(to bottom, transparent 50%, rgba(255,255,255,0.05) 50%),
+    linear-gradient(45deg, transparent 50%, #404040 50%);
   background-size: 50px 50px, 100% 100%;
+  transform: rotateX(10deg);
 }
 
 .mountain-peak {
   position: absolute;
   width: 200px;
   height: 200px;
-  background-color: #8B4513;
+  background: linear-gradient(145deg, #303030, #1a1a1a);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  transform: translateX(-50%);
-  transition: bottom 0.5s ease-in-out;
+  transform: translateX(-50%) rotateX(10deg);
+  transition: bottom var(--transition-speed) ease-in-out;
+  box-shadow: var(--shadow-subtle);
 }
 
 .mountain-peak.player1 {
   left: 30%;
   border-right: 10px solid #4CAF50;
+  transform-origin: bottom;
 }
 
 .mountain-peak.player2 {
   left: 70%;
   border-left: 10px solid #FF5722;
+  transform-origin: bottom;
 }
 
 .player-flag {
   position: absolute;
-  width: 30px;
-  height: 40px;
-  top: -40px;
+  width: 40px;
+  height: 50px;
+  top: -50px;
   left: 50%;
-  transform: translateX(-50%);
-}
-
-.player-flag.player1 {
-  background-color: #4CAF50;
-}
-
-.player-flag.player2 {
-  background-color: #FF5722;
+  transform: translateX(-50%) skew(-10deg);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 .player-animal {
   position: absolute;
-  font-size: 3rem;
+  font-size: 4rem;
   left: 50%;
   transform: translateX(-50%);
   bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .challenges-section {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 2rem;
+  padding: 1rem;
 }
 
 .challenges-column {
   flex: 1;
-  background-color: var(--card-background);
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background: linear-gradient(to bottom right, #252525, #1E1E1E);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-subtle);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .challenge-card {
-  background-color: #f4f4f4;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
+  background-color: #2A2A2A;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .challenge-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
 }
 
 .challenge-button {
-  background-color: var(--secondary-color);
+  background: linear-gradient(45deg, var(--primary-color), #6a11cb);
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all var(--transition-speed) ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .challenge-button:hover {
-  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .challenge-status {
-  color: #27ae60;
+  color: var(--secondary-color);
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.challenge-status::before {
+  content: '✓';
+  margin-right: 0.5rem;
+  color: var(--secondary-color);
 }
 
 .start-challenge-btn {
   display: block;
-  width: 200px;
-  margin: 20px auto;
-  background-color: var(--primary-color);
+  width: 250px;
+  margin: 2rem auto;
+  background: linear-gradient(45deg, var(--primary-color), #6a11cb);
   color: white;
   border: none;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all var(--transition-speed) ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .start-challenge-btn:hover {
-  background-color: #34495e;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
-.animal-selection {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 20px;
+.animal-selection-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #1E1E1E;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
-.animal-button {
-  background-color: #f1f1f1;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  padding: 15px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.player-selection-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.animal-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1.5rem;
+  background: #2A2A2A;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  overflow: hidden;
 }
 
-.animal-button:hover {
-  transform: scale(1.05);
-  background-color: #e0e0e0;
+.animal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--animal-color, #6a11cb);
+  transition: height 0.3s ease;
 }
 
-.animal-button.selected {
-  background-color: var(--secondary-color);
-  color: white;
-  border-color: #2980b9;
+.animal-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+.animal-card.selected {
+  border-color: var(--animal-color, #6a11cb);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+.animal-card.selected::before {
+  height: 100%;
+}
+
+.animal-emoji {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.animal-card:hover .animal-emoji {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.animal-details {
+  text-align: center;
+  width: 100%;
+}
+
+.animal-details h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.animal-details p {
+  color: #B0B0B0;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.animal-traits {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.animal-trait {
+  background: rgba(255,255,255,0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  color: #B0B0B0;
 }
 
 .winner-banner {
   text-align: center;
-  background-color: #4CAF50;
+  background: linear-gradient(45deg, #4CAF50, #81c784);
   color: white;
-  padding: 20px;
-  border-radius: 15px;
-  margin-top: 20px;
-  font-size: 1.5rem;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  margin-top: 2rem;
+  font-size: 1.8rem;
+  box-shadow: var(--shadow-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.reset-game-btn {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 12px 24px;
+  background: white;
+  color: #4CAF50;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 10;
+  position: relative;
+}
+
+.reset-game-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .animal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .challenges-section {
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .mountain-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .animal-grid {
+    grid-template-columns: 1fr;
+  }
 }

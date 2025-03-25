@@ -62,6 +62,8 @@ function App() {
 
   // Reset game
   const resetGame = () => {
+    setPlayer1(null);
+    setPlayer2(null);
     setPlayer1Challenges({ ctf1: false, ctf2: false, leetcode: false });
     setPlayer2Challenges({ ctf1: false, ctf2: false, leetcode: false });
     setWinner(null);
@@ -70,30 +72,15 @@ function App() {
 
   return (
     <div className="container">
-      <h1 style={{ 
-        textAlign: 'center', 
-        color: '#2c3e50', 
-        marginBottom: '20px' 
-      }}>
-        CS Club Coding Challenge
-      </h1>
+      <h1>CS Club Coding Challenge</h1>
 
       {/* Winner Announcement */}
       {winner && (
         <div className="winner-banner">
           🏆 Player {winner} Reaches the Mountain Peak! 🏆
           <button 
+            className="reset-game-btn"
             onClick={resetGame}
-            style={{
-              display: 'block',
-              margin: '20px auto 0',
-              padding: '10px 20px',
-              backgroundColor: 'white',
-              color: '#4CAF50',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer'
-            }}
           >
             Climb Again
           </button>
